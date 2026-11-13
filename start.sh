@@ -12,7 +12,7 @@ BRANCH="${SPIDER_BRANCH:-main}"
 INSTALLER_URL="${SPIDER_INSTALLER_URL:-https://raw.githubusercontent.com/amirh00sain/SpiderPanel/main/start.sh}"
 
 ENV_FILE="/etc/spider-panel.env"
-SERVICE="spider-panel"
+SERVICE="panel"
 
 PORT="8080"
 
@@ -47,7 +47,7 @@ IS_CODESPACE=0
 # ============================================================
 
 log() {
-    printf '[SpiderPanel] %s\n' "$*"
+    printf '[Panel] %s\n' "$*"
 }
 
 ok() {
