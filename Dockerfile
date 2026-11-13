@@ -11,6 +11,7 @@ RUN apt-get update \
        build-essential git curl ca-certificates libssl-dev zlib1g-dev pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
+# Download Assets From GitHub
 RUN git clone --depth 1 https://github.com/TelegramMessenger/MTProxy.git /tmp/MTProxy \
     && make -C /tmp/MTProxy \
     && install -m 0755 /tmp/MTProxy/objs/bin/mtproto-proxy /usr/local/bin/mtproto-proxy \
@@ -22,7 +23,7 @@ RUN pip install -r requirements.txt
 COPY . .
 RUN python -m py_compile main.py vercel_relay.py
 
-# SpiderPanel panel port is fixed at 8080.
+# FoxPanel panel port is fixed at 8080.
 EXPOSE 8080
 EXPOSE 443
 
