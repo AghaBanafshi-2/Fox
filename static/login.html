@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Spider Panel Login</title>
+<title>Custom Panel Login</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700;900&display=swap" rel="stylesheet"/>
@@ -14,9 +14,9 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                "on-surface": "#e2e2e2",
-                "on-surface-variant": "#94a3b8",
-                "background": "#000000"
+                "on-surface": "#fef9c3",
+                "on-surface-variant": "#fde68a",
+                "background": "#0a0a00"
             },
             fontFamily: {
                 "headline-lg": ["Inter"],
@@ -47,7 +47,6 @@ html, body {
     user-select: none;
     -webkit-touch-callout: none;
 }
-/* استایل کلی و پس‌زمینه */
 * {
     margin: 0;
     padding: 0;
@@ -64,12 +63,12 @@ input, textarea, select {
 .password-mask-input {
     color: transparent !important;
     -webkit-text-fill-color: transparent !important;
-    caret-color: #ffffff;
+    caret-color: #facc15;
     font-family: 'JetBrains Mono', monospace !important;
 }
 .password-mask-input::placeholder {
-    color: #6b7280 !important;
-    -webkit-text-fill-color: #6b7280 !important;
+    color: #a16207 !important;
+    -webkit-text-fill-color: #a16207 !important;
     font-family: 'Inter', sans-serif !important;
 }
 .password-mask {
@@ -80,15 +79,15 @@ input, textarea, select {
     top: 50%;
     transform: translateY(-50%);
     overflow: hidden;
-    color: #ffffff;
+    color: #facc15;
     font: 500 14px/1 'JetBrains Mono', monospace;
     white-space: pre;
     pointer-events: none;
 }
 
 body {
-    background-color: #000000 !important;
-    color: #e2e2e2 !important;
+    background: radial-gradient(circle at 20% 20%, #422006 0%, #1a1400 40%, #0a0a00 100%) !important;
+    color: #fef9c3 !important;
     min-height: 100vh;
     width: 100vw;
     overflow: hidden;
@@ -108,23 +107,24 @@ body {
     justify-content: flex-start;
     align-items: flex-end;
     pointer-events: none;
-    z-index: 1; /* در لایه زیرین باکس لاگین قرار می‌گیرد */
+    z-index: 1;
 }
 
-/* تصویر مجسمه */
+/* تصویر مجسمه با فیلتر زرد */
 .hero-statue {
     height: 98vh;
     max-height: 100%;
     width: auto;
     object-fit: contain;
     object-position: bottom left;
-    opacity: 0.92;
+    opacity: 0.85;
     image-rendering: pixelated;
+    filter: sepia(1) saturate(3) hue-rotate(5deg) brightness(0.9) drop-shadow(0 0 30px rgba(250, 204, 21, 0.3));
     -webkit-mask-image: linear-gradient(90deg, #000 65%, transparent 100%);
     mask-image: linear-gradient(90deg, #000 65%, transparent 100%);
 }
 
-/* هاله دایره‌ای دور سر مجسمه */
+/* هاله دایره‌ای زرد دور سر مجسمه */
 .hero-halo {
     position: absolute;
     left: 14%;
@@ -132,17 +132,18 @@ body {
     width: clamp(280px, 34vw, 550px);
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(250, 204, 21, 0.35);
+    box-shadow: 0 0 60px rgba(250, 204, 21, 0.15), inset 0 0 40px rgba(250, 204, 21, 0.08);
     z-index: 0;
     animation: breathe 7s ease-in-out infinite;
 }
 
 @keyframes breathe {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 0.85; transform: scale(1.02); }
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.03); }
 }
 
-/* کلمه عمودی SPIDER روی مجسمه */
+/* کلمه عمودی روی مجسمه */
 .hero-vertical-text {
     position: absolute;
     top: 50%;
@@ -154,8 +155,8 @@ body {
     font-size: clamp(1.4rem, 2.2vw, 2.4rem);
     font-weight: 900;
     letter-spacing: 0.45em;
-    color: rgba(255, 255, 255, 0.7);
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+    color: rgba(250, 204, 21, 0.75);
+    text-shadow: 0 2px 20px rgba(250, 204, 21, 0.4), 0 2px 12px rgba(0, 0, 0, 0.9);
     z-index: 2;
 }
 
@@ -168,54 +169,61 @@ body {
     gap: 12px;
     font-size: 0.75rem;
     font-family: 'JetBrains Mono', monospace;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(250, 204, 21, 0.7);
     z-index: 20;
     letter-spacing: 0.1em;
 }
 
 .badge-item {
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(250, 204, 21, 0.3);
     padding: 4px 10px;
     border-radius: 4px;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(8px);
+    box-shadow: 0 0 12px rgba(250, 204, 21, 0.1);
 }
 
-/* کارت شیشه‌ای لاگین */
+/* کارت شیشه‌ای لاگین با تم زرد */
 .glass-card {
-    background: rgba(10, 10, 15, 0.65) !important;
+    background: rgba(20, 16, 0, 0.75) !important;
     backdrop-filter: blur(24px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8) !important;
+    border: 1px solid rgba(250, 204, 21, 0.35) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(250, 204, 21, 0.15) !important;
 }
 
 /* ورودی فرم */
 .input-glass {
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    color: #e2e2e2 !important;
-    caret-color: #e2e2e2 !important;
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    border: 1px solid rgba(250, 204, 21, 0.35) !important;
+    color: #fef9c3 !important;
+    caret-color: #facc15 !important;
     transition: all 0.3s ease;
 }
 
 .input-glass:focus {
-    border-color: rgba(255, 255, 255, 0.6) !important;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(250, 204, 21, 0.9) !important;
+    box-shadow: 0 0 16px rgba(250, 204, 21, 0.4) !important;
     outline: none;
 }
 
-/* دکمه ورود */
+.input-glass::placeholder {
+    color: rgba(253, 224, 71, 0.4) !important;
+}
+
+/* دکمه ورود زرد */
 .btn-submit {
-    background-color: #ffffff !important;
-    color: #000000 !important;
+    background: linear-gradient(135deg, #facc15 0%, #eab308 100%) !important;
+    color: #1a1400 !important;
     transition: all 0.25s ease;
+    box-shadow: 0 4px 20px rgba(250, 204, 21, 0.35);
+    border: 1px solid rgba(250, 204, 21, 0.6);
 }
 
 .btn-submit:hover {
-    background-color: #e2e2e2 !important;
+    background: linear-gradient(135deg, #fde047 0%, #facc15 100%) !important;
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 28px rgba(250, 204, 21, 0.5);
 }
 
 .btn-submit:active {
@@ -225,7 +233,7 @@ body {
 /* پیغام خطا */
 .error-msg {
     background: rgba(255, 180, 171, 0.1);
-    border: 1px solid rgba(255, 180, 171, 0.3);
+    border: 1px solid rgba(255, 180, 171, 0.4);
     color: #ffb4ab;
     padding: 10px 14px;
     border-radius: 12px;
@@ -240,12 +248,22 @@ body {
 .glass-card.login-success-out { animation: loginSuccessOut .22s ease both; }
 @keyframes loginSuccessOut { to{opacity:0;transform:translateY(-5px) scale(.985);filter:blur(4px)} }
 
+/* عنوان با گرادیانت زرد */
+.title-yellow {
+    background: linear-gradient(90deg, #fde047 0%, #facc15 50%, #eab308 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(250, 204, 21, 0.3);
+}
+
 /* رفتار اختصاصی نسخه موبایل */
 @media (max-width: 768px) {
     .hero-container {
         width: 100vw;
         max-width: none;
-        opacity: 0.45; /* مات‌تر برای خوانایی بهتر فرم روی موبایل */
+        opacity: 0.4;
         justify-content: center;
     }
     .hero-statue {
@@ -271,51 +289,44 @@ body {
     }
 }
 
-/* Prevent Android/iOS blue touch highlight on tap. Keep focus styling under our control. */
+/* حذف هایلایت آبی و حفظ focus */
 html, body, button, a, input, select, textarea, summary,
-[role="button"], [tabindex], .btn, .btn-p, .btn-g, .btn-r, .btn-b, .btn-gr, .btn-glass,
-.nav-item, .nav-accordion-head, .spd-acc-head, .bot-tab, .bot-acc-head, .tab, .scn-tab,
-.cfg-copy-btn, .theme-dot, .lang-btn, .login-btn {
+[role="button"], [tabindex] {
   -webkit-tap-highlight-color: transparent !important;
   -webkit-touch-callout: none;
 }
 
-/* Remove the native blue touch/focus flash while retaining keyboard focus visibility. */
-button, a, summary, [role="button"], .btn, .nav-item, .nav-accordion-head, .spd-acc-head,
-.bot-tab, .bot-acc-head, .tab, .scn-tab, .cfg-copy-btn, .theme-dot, .lang-btn, .login-btn {
-  outline: none;
-}
+button, a, summary, [role="button"] { outline: none; }
 
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
 [role="button"]:focus-visible, [tabindex]:focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid #facc15;
   outline-offset: 2px;
 }
-
 </style>
 </head>
 <body class="h-screen w-screen overflow-hidden flex items-center justify-center relative">
 
-<!-- نوار شناور بالا (بدون کلید release) -->
+<!-- نوار شناور بالا -->
 <div class="badge-bar">
     <span class="badge-item">★ 2026</span>
-    <span class="badge-item">SPIDER</span>
+    <span class="badge-item">CUSTOM</span>
 </div>
 
-<!-- بک‌گراند: مجسمه دایترد و هاله (در سمت چپ) -->
+<!-- بک‌گراند: مجسمه و هاله زرد -->
 <div class="hero-container">
     <div class="hero-halo"></div>
-    <span class="hero-vertical-text">SPIDER</span>
-    <img class="hero-statue" src="/static/img/hero.png" alt="Spider Statue Background">
+    <span class="hero-vertical-text">CUSTOM</span>
+    <img class="hero-statue" src="/static/img/hero.png" alt="Custom Panel Background">
 </div>
 
-<!-- باکس ورود (روی مجسمه و لایه z-10) -->
+<!-- باکس ورود -->
 <div class="glass-card rounded-3xl w-full max-w-md p-8 mx-4 flex flex-col gap-6 shadow-2xl z-10 relative">
     <!-- Header -->
     <div class="flex flex-col items-center gap-2 text-center">
-        <img src="/static/spider-logo.svg" alt="Spider" onerror="this.style.display='none'" style="width:96px;height:96px;margin-bottom:2px">
-        <h1 class="text-2xl font-bold tracking-wider text-white">SPIDER PANEL</h1>
-        <p class="text-xs text-on-surface-variant font-medium">High Performance Panel</p>
+        <img src="/static/spider-logo.svg" alt="Custom" onerror="this.style.display='none'" style="width:96px;height:96px;margin-bottom:2px;filter:sepia(1) saturate(3) hue-rotate(5deg) brightness(1.1)">
+        <h1 class="text-2xl font-bold tracking-wider title-yellow">CUSTOM PANEL</h1>
+        <p class="text-xs text-on-surface-variant font-medium tracking-widest">High Performance Panel</p>
     </div>
 
     <!-- Error -->
@@ -329,8 +340,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
         <div class="flex flex-col gap-2">
             <label class="font-code-label text-xs text-on-surface-variant tracking-wider" for="password">PASSWORD</label>
             <div class="relative">
-                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 20px;">lock</span>
-                <input class="input-glass password-mask-input w-full rounded-2xl py-3 pl-12 pr-4 text-sm text-white placeholder:text-gray-500 font-sans" id="password" placeholder="Enter password" type="password" autofocus required/>
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2" style="font-size: 20px; color:#facc15;">lock</span>
+                <input class="input-glass password-mask-input w-full rounded-2xl py-3 pl-12 pr-4 text-sm placeholder:text-gray-500 font-sans" id="password" placeholder="Enter password" type="password" autofocus required/>
                 <span class="password-mask" id="password-mask" aria-hidden="true"></span>
             </div>
         </div>
@@ -401,8 +412,6 @@ document.getElementById('login-form').addEventListener('submit', async function(
             throw new Error(d.detail || 'Login failed');
         }
         loginTone('success');
-        // Keep the visual transition optional: an absent animation target must
-        // never turn a successful authentication response into a login error.
         var loginCard = document.querySelector('.glass-card');
         if (loginCard) loginCard.classList.add('login-success-out');
         setTimeout(function() { location.href = '/spider'; }, 240);
